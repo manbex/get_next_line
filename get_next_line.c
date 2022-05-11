@@ -15,8 +15,8 @@
 char	*ft_read(int fd, char *buf, char *str)
 {
 	char	last;
-	int	i;
-	
+	int		i;
+
 	last = ' ';
 	while (last != '\n')
 	{
@@ -48,10 +48,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	str = malloc(1);
 	if (!str)
-	{
-		free(buf);
-		return (NULL);
-	}
+		return (free(buf), NULL);
 	str[0] = 0;
 	str = ft_read(fd, buf, str);
 	free(buf);

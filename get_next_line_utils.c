@@ -25,17 +25,14 @@ size_t	ft_strlen(const char *s)
 char	*ft_strdup_cat(char *dest, char *src)
 {
 	char	*str;
-	int	i;
-	int	size;
+	int		i;
+	int		size;
 
 	i = 0;
-	size = ft_strlen(src) + ft_strlen(dest); 
+	size = ft_strlen(src) + ft_strlen(dest);
 	str = malloc((size + 1) * sizeof(char));
 	if (!str)
-	{
-		free(dest);
-		return (NULL);
-	}
+		return (free(dest), NULL);
 	while (dest[i])
 	{
 		str[i] = dest[i];
