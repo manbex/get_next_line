@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 22:22:34 by mbenicho          #+#    #+#             */
-/*   Updated: 2022/05/10 22:22:35 by mbenicho         ###   ########.fr       */
+/*   Created: 2022/05/17 19:33:24 by mbenicho          #+#    #+#             */
+/*   Updated: 2022/05/17 19:33:33 by mbenicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
@@ -22,25 +22,31 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup_cat(char *dest, char *src)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
+	size_t	size;
 	int		i;
-	int		size;
 
 	i = 0;
-	size = ft_strlen(src) + ft_strlen(dest);
+	if (!s1)
+	{
+		s1 = malloc(sizeof(char));
+		if (!s1)
+			return (NULL);
+		*s1 = 0;
+	}
+	size = ft_strlen(s1) + ft_strlen(s2);
 	str = malloc((size + 1) * sizeof(char));
 	if (!str)
-		return (free(dest), NULL);
-	while (dest[i])
+		return (NULL);
+	while (s1[i])
 	{
-		str[i] = dest[i];
+		str[i] = s1[i];
 		i++;
 	}
-	while (*src)
-		str[i++] = *src++;
+	while (*s2)
+		str[i++] = *s2++;
 	str[i] = 0;
-	free(dest);
-	return (str);
+	return (free(s1), str);
 }

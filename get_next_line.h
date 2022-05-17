@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 22:22:12 by mbenicho          #+#    #+#             */
-/*   Updated: 2022/05/10 22:22:14 by mbenicho         ###   ########.fr       */
+/*   Created: 2022/05/17 19:34:29 by mbenicho          #+#    #+#             */
+/*   Updated: 2022/05/17 19:36:41 by mbenicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strdup_cat(char *dest, char *src);
 char	*get_next_line(int fd);
-void	ft_fill_buf(char *buf);
-char	*ft_read(int fd, char *buf, char *str);
+char	*get_stash(char *stash);
+char	*get_line(char *stash);
+int		ft_have_newline(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlen(char *s);
 
 #endif
