@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -39,7 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	size = ft_strlen(s1) + ft_strlen(s2);
 	str = malloc((size + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+		return (ft_free(s1));
 	while (s1[i])
 	{
 		str[i] = s1[i];
@@ -49,4 +49,11 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i++] = *s2++;
 	str[i] = 0;
 	return (free(s1), str);
+}
+
+char	*ft_free(char *str)
+{
+	if (str)
+		free(str);
+	return (NULL);
 }

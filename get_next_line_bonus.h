@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 20:00:28 by mbenicho          #+#    #+#             */
-/*   Updated: 2022/05/17 20:00:30 by mbenicho         ###   ########.fr       */
+/*   Created: 2022/05/17 19:34:29 by mbenicho          #+#    #+#             */
+/*   Updated: 2022/05/17 19:36:41 by mbenicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char	*get_line(char *stash);
 int		ft_have_newline(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *s);
+char	*ft_free(char *str);
 
 #endif

@@ -43,7 +43,7 @@ char	*get_line(char *stash)
 		size++;
 	str = malloc((size + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+		return (ft_free(stash));
 	while (i < size)
 	{
 		str[i] = stash[i];
@@ -72,8 +72,10 @@ char	*get_stash(char *stash)
 	while (stash[i + size])
 		size++;
 	if (!size)
-		return (free(stash), NULL);
+		return (ft_free(stash));
 	str = malloc((size + 1) * sizeof(char));
+	if (!str)
+		return (ft_free(stash));
 	while (stash[i])
 		str[j++] = stash[i++];
 	str[j] = 0;
@@ -95,10 +97,14 @@ char	*get_next_line(int fd)
 	{
 		readed = read(fd, buf, BUFFER_SIZE);
 		if (readed < 0)
-			return (free(buf), NULL);
+			return (free(buf), ft_free(stash));
 		buf[readed] = 0;
 		if (readed)
+		{
 			stash = ft_strjoin(stash, buf);
+			if (!stash)
+				return (ft_free(buf));
+		}
 	}
 	str = get_line(stash);
 	stash = get_stash(stash);

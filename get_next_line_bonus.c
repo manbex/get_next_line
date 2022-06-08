@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 19:59:37 by mbenicho          #+#    #+#             */
-/*   Updated: 2022/05/17 19:59:39 by mbenicho         ###   ########.fr       */
+/*   Created: 2022/05/16 17:32:20 by mbenicho          #+#    #+#             */
+/*   Updated: 2022/05/16 17:32:21 by mbenicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_line(char *stash)
 		size++;
 	str = malloc((size + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+		return (ft_free(stash));
 	while (i < size)
 	{
 		str[i] = stash[i];
@@ -72,8 +72,10 @@ char	*get_stash(char *stash)
 	while (stash[i + size])
 		size++;
 	if (!size)
-		return (free(stash), NULL);
+		return (ft_free(stash));
 	str = malloc((size + 1) * sizeof(char));
+	if (!str)
+		return (ft_free(stash));
 	while (stash[i])
 		str[j++] = stash[i++];
 	str[j] = 0;
@@ -95,10 +97,14 @@ char	*get_next_line(int fd)
 	{
 		readed = read(fd, buf, BUFFER_SIZE);
 		if (readed < 0)
-			return (free(buf), NULL);
+			return (free(buf), ft_free(stash[fd]));
 		buf[readed] = 0;
 		if (readed)
+		{
 			stash[fd] = ft_strjoin(stash[fd], buf);
+			if (!stash[fd])
+				return (ft_free(buf));
+		}
 	}
 	str = get_line(stash[fd]);
 	stash[fd] = get_stash(stash[fd]);

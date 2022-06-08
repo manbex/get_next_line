@@ -22,5 +22,6 @@ char	*get_line(char *stash);
 int		ft_have_newline(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *s);
+char	*ft_free(char *str);
 
 #endif
