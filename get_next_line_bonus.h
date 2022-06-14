@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*get_stash(char *stash);
+char	*get_stash(char **stash, char *str);
 char	*get_line(char *stash);
 int		ft_have_newline(char *str);
 char	*ft_strjoin(char *s1, char *s2);

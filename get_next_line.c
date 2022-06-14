@@ -53,9 +53,9 @@ char	*get_line(char *stash)
 	return (str);
 }
 
-char	*get_stash(char *stash)
+char	*get_stash(char **stash, char *str)
 {
-	char	*str;
+	char	*new;
 	size_t	i;
 	size_t	j;
 	size_t	size;
@@ -63,23 +63,25 @@ char	*get_stash(char *stash)
 	i = 0;
 	j = 0;
 	size = 0;
-	if (!stash)
+	if (!*stash)
 		return (NULL);
-	while (stash[i] && stash[i] != '\n')
+	while ((*stash)[i] && (*stash)[i] != '\n')
 		i++;
-	if (stash[i] == '\n')
+	if ((*stash)[i] == '\n')
 		i++;
-	while (stash[i + size])
+	while ((*stash)[i + size])
 		size++;
 	if (!size)
-		return (ft_free(stash));
-	str = malloc((size + 1) * sizeof(char));
-	if (!str)
-		return (ft_free(stash));
-	while (stash[i])
-		str[j++] = stash[i++];
-	str[j] = 0;
-	return (free(stash), str);
+		return (*stash = ft_free(*stash), str);
+	new = malloc((size + 1) * sizeof(char));
+	if (!new)
+		return (free(*stash), ft_free(str));
+	while ((*stash)[i])
+		new[j++] = (*stash)[i++];
+	new[j] = 0;
+	free(*stash);
+	*stash = new;
+	return (str);
 }
 
 char	*get_next_line(int fd)
@@ -91,7 +93,7 @@ char	*get_next_line(int fd)
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
-		return (NULL);
+		return (ft_free(stash));
 	readed = 1;
 	while (!ft_have_newline(stash) && readed)
 	{
@@ -107,6 +109,6 @@ char	*get_next_line(int fd)
 		}
 	}
 	str = get_line(stash);
-	stash = get_stash(stash);
+	str = get_stash(&stash, str);
 	return (free(buf), str);
 }
