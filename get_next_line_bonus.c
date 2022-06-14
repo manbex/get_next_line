@@ -79,9 +79,7 @@ char	*get_stash(char **stash, char *str)
 	while ((*stash)[i])
 		new[j++] = (*stash)[i++];
 	new[j] = 0;
-	free(*stash);
-	*stash = new;
-	return (str);
+	return (free(*stash), *stash = new, str);
 }
 
 char	*get_next_line(int fd)
