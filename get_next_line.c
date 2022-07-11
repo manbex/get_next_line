@@ -85,28 +85,28 @@ char	*get_stash(char **stash, char *str)
 char	*get_next_line(int fd)
 {
 	char		*buf;
-	static char	*stash;
+	static char	*stash[1024];
 	int			readed;
 	char		*str;
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
-		return (ft_free(stash));
+		return (ft_free(stash[fd]));
 	readed = 1;
-	while (!ft_have_newline(stash) && readed)
+	while (!ft_have_newline(stash[fd]) && readed)
 	{
 		readed = read(fd, buf, BUFFER_SIZE);
 		if (readed < 0)
-			return (free(buf), ft_free(stash));
+			return (free(buf), ft_free(stash[fd]));
 		buf[readed] = 0;
 		if (readed)
 		{
-			stash = ft_strjoin(stash, buf);
-			if (!stash)
+			stash[fd] = ft_strjoin(stash[fd], buf);
+			if (!stash[fd])
 				return (ft_free(buf));
 		}
 	}
-	str = get_line(stash);
-	str = get_stash(&stash, str);
+	str = get_line(stash[fd]);
+	str = get_stash(&stash[fd], str);
 	return (free(buf), str);
 }
