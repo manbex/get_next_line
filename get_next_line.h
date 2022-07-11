@@ -20,7 +20,7 @@ char	*get_next_line(int fd);
 char	*get_stash(char **stash, char *str);
 char	*get_line(char *stash);
 int		ft_have_newline(char *str);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_spe(char *s1, char *s2);
 size_t	ft_strlen(char *s);
 char	*ft_free(char *str);
 

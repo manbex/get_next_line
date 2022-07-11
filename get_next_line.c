@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 		buf[readed] = 0;
 		if (readed)
 		{
-			stash[fd] = ft_strjoin(stash[fd], buf);
+			stash[fd] = ft_strjoin_spe(stash[fd], buf);
 			if (!stash[fd])
 				return (ft_free(buf));
 		}
